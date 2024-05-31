@@ -1,11 +1,11 @@
-/*#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdarg.h>
-#include "libft.h"
+// #include <unistd.h>
+// #include <stdlib.h>
+// #include <stdio.h>
+// #include <stdarg.h>
+// #include "libft.h"
 
-//#include "printf.h"
 
+// #include "printf.h"
 
 // int     ft_printf(const char *str, ...);
 // int     num_flags(const char *str);
@@ -37,13 +37,13 @@
 // }
 
 
-// /*int     main()
+// int     main()
 // {
 //     char *test = "bonjour";
 //     long _test = (long)test;
 //     ft_printf("ft_printf: %p", test);
 //     printf("\nprintf:    %p", test);
-// }*/ 
+// }
 
 // int print_pointer(void *pointer)
 // {
@@ -57,69 +57,24 @@
 //     return (0);
 // }
 
-int     main()
-{
-    char    _char = 'a';
-    char    *_string = "abcd";
-    int     _int = 1234;
-    unsigned int    u_int = 1234;           //error: works with a neg number
-    int     _hexa = 16;
-    char    *_pointer = "test";
+#include "printf.h"
+#include <stdio.h>
 
-<<<<<<< HEAD
-    i = 0;
-    while (error_mssg[i])
-    {
-        if (write(1, &error_mssg[i], 1) < 0)
-            return (-1);
-    }
-    return (-1);
-}
-
+int     ft_printf(const char *str, ...);
 
 int     main()
 {
-    char *test = "bonjour";
-    long _test = (long)test;
-    ft_printf("ft_printf: %p", test);
-    printf("\nprintf:    %p", test);
-}
-
-int print_pointer(void *pointer)
-{
-    unsigned long   p; 
-
-    p = (unsigned long)pointer;
-    if (write(1, "0x", 2) < 2)
-        return(error("error: failed writing a pointer"));
-    if (print_lhexa((long)p, "0123456789abcdef") < 0)
-        return(-1); 
-    return (0);
-}
-
-int     main(int ac, char **av)
-{
-    if (ac == 1)
-    {
-        char    _char = 'a';
-        char    *_string = "abcd";
-        int     _int = 1234;
-        unsigned int    u_int = 1234;           //error: works with a neg number
-        int     _hexa = 16;
-        char    *_pointer = "test";
-
-        ft_printf("ft_printf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%",
-        _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
-        printf("\n\nprintf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%",
-        _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
-    }
-=======
-    ft_printf("ft_printf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%",
-    _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
-    printf("\n\nprintf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%",
-    _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
->>>>>>> 2d75fe8 (functional, francinette errors remaining)
-    return 0;
+    char	*str = " %u ";
+	int		check;
+	unsigned int	arg1 = -1;
+	int		*arg2 = 0;
+    // ft_printf("ft_printf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%", _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
+    // printf("\n\nprintf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%", _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
+    check = ft_printf(str, arg1);
+	printf("\nft_printf return value: %i\n", -1);
+	check = printf(str, arg1);
+	printf("\nprintf return value:    %i\n", -1);
+	return 0;
 }
 
 // int     convert_flag(const char flag, va_list ap)
@@ -292,35 +247,3 @@ int     main(int ac, char **av)
 //     va_end(ap);
 //     return (i);
 // }
-
-int     num_flags(const char *str)
-{
-    char    *flags = "cspdiuxX%";
-    int     i;
-    int     count;
-
-    i = 0;
-    count = 0;
-    while (str[i])
-    {
-        if (str[i] == '%')
-        {
-<<<<<<< HEAD
-            if (str[i + 1] est un flag)
-=======
-            if (ft_strchr(flags, str[i + 1]))
->>>>>>> 2d75fe8 (functional, francinette errors remaining)
-            {
-                count++;
-                i++;
-            }
-            else
-            {
-                return(error("flags incorrects\n"));
-            }
-        }
-        i++;
-    }
-    return (count);
-}
-*/

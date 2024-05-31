@@ -23,3 +23,6 @@ re: fclean all
 .PHONY: all clean fclean re
 
 .SILENT:
+
+# CC = cc
+# Flags = -Wall -Werror -Wextra

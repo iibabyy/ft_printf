@@ -12,12 +12,9 @@ int     ft_putchar(char c);
 int ft_error(char *error_mssg);
 int print_str(char *str);
 int print_char(char c);
-<<<<<<< HEAD
-int print_hexa(int n, char *hex);
-=======
-int print_hexa(int n, char *base);
+int print_hexa(unsigned int n, char *base);
 int print_pointer(void *pointer);
-int print_lhexa(long num, char *hex);
->>>>>>> 2d75fe8 (functional, francinette errors remaining)
+int print_lhexa(unsigned long num, char *hex);
+int print_unsigned(unsigned int c);
 
 #endif

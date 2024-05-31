@@ -21,28 +21,34 @@ int     ft_printf(const char *str, ...)
 {
     va_list ap;
     int     i;
+	int		check;
+	int temp;
 
-    va_start(ap, str);
+	i = 0;
+	check = 0;
+	temp = 0;
+	va_start(ap, str);
     while (str[i] != '\0')
     {
         while ((str[i] != '%') && (str[i] != '\0'))
         {
-            if (write(1, &str[i], 1) <= -1)
+            if (write(1, &str[i], 1) < 0)
                 return (-1);
+			check++;
             i++;
         }
         if (str[i] == '\0')
         {
-            return (i);
+            return (check);
         }
-        if (convert_flag(str[++i], ap) < 0)
-        {
-            return (-1);   
-        }
-        i++;
+        temp = convert_flag(str[++i], ap);
+        if (temp < 0)
+			return (-1);
+		check += temp;
+		i++;
     }
     va_end(ap);
-    return (i);
+    return (check);
 }
 
 /*
@@ -58,11 +64,7 @@ int     num_flags(const char *str)
     {
         if (str[i] == '%')
         {
-<<<<<<< HEAD
-            if (str[i + 1] (est dans flags))
-=======
             if (ft_strchr(flags, str[i + 1]))
->>>>>>> 2d75fe8 (functional, francinette errors remaining)
             {
                 count++;
                 i++;
@@ -123,19 +125,19 @@ int     convert_flag(const char flag, va_list ap)
     }
     else if (flag == 'u')
     {
-        return((print_nbr(va_arg(ap, unsigned int))));
+        return((print_unsigned(va_arg(ap, unsigned int))));
     }
     else if (flag == 'x')
     {
-        return((print_hexa(va_arg(ap, int), "0123456789abcdef")));
+        return((print_hexa(va_arg(ap, unsigned int), "0123456789abcdef")));
     }
     else if (flag == 'X')
     {
-        return((print_hexa(va_arg(ap, int), "0123456789ABCDEF")));
+        return((print_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF")));
     }
     else if (flag == '%')
     {
-        return((write(1, "%", 1)));
+        return((write(1, "%%", 1)));
     }
     else
     {
