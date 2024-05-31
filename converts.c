@@ -113,13 +113,6 @@ int print_hexa(unsigned int n, char *hex)
     num = (long)n;
 	check = 0;
 	temp = 0;
-    if (num < 0)
-    {
-        if (ft_putchar('-') < 0)
-            return (-1);
-		check++;
-        num = -num;
-    }
     if (num >= 16)
     {
 		temp = print_hexa(num / 16, hex);
@@ -147,13 +140,6 @@ int print_lhexa(unsigned long int num, char *hex)
 
 	check = 0;
 	temp = 0;
-    if (num < 0)
-    {
-        if (ft_putchar('-') < 0)
-            return (-1);
-		check++;
-        num = -num;
-    }
     if (num >= 16)
     {
 		temp = print_lhexa(num / 16, hex);
