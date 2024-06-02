@@ -1,49 +1,38 @@
-TARGET = libftprintf.a
+#Variables
+
+NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-AR = ar rcs
 RM = rm -f
-INCLUDE_DIR = -I.
+AR = ar rcs
 
-# Define colors
-DEFAULT_COLOR = \033[0;39m
-RED = \033[0;91m
-GREEN = \033[0;92m
-YELLOW = \033[0;93m
+#Sources
 
-# Source and object file lists
-SOURCE_FILES =	ft_printf \
-		ft_printf_utils \
-		converts \
+SRC =  ft_printf.c \
+        ft_printf_utils.c \
+		converts.c	\
 
-SOURCES = $(addsuffix .c, $(SOURCE_FILES))
-OBJECTS = $(addsuffix .o, $(SOURCE_FILES))
+OBJ = $(SRC:.c=.o)
 
-# Build rules
+all:  $(NAME)
 
-$(TARGET): $(OBJECTS)
-	@ make -C libft
-	@ cp libft/libft.a .
-	@ mv libft.a $(TARGET)
-	@ $(AR) $(TARGET) $(OBJECTS)
-	@ echo "$(GREEN)Compiled libftprintf.a successfully!$(DEFAULT_COLOR)"
+$(NAME):    $(OBJ)
+			@$(AR) $(NAME) $(OBJ)
+			@echo "ft_printf compiled!"
 
 %.o: %.c
-	@ $(CC) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
-	@ echo "$(GREEN)Created object files successfully$(DEFAULT_COLOR)"
-
-all: $(TARGET)
+			@echo "Compiling: $<"
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@ $(RM) -rf $(OBJECTS)
-	@ make clean -C libft
-	@ echo "$(RED)Removed object files$(DEFAULT_COLOR)"
+			@$(RM) -f *.o
+			@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
 
-fclean: clean
-	@ $(RM) $(TARGET)
-	@ $(RM) libft/libft.a
-	@ echo "$(RED)Removed 'libftprintf.a' and 'libft.a' successfully$(DEFAULT_COLOR)"
+fclean:		clean
+			@$(RM) -f $(NAME)
+			@echo "ft_printf executable files cleaned!$(DEF_COLOR)"
 
-bonus: all
+re:			fclean all
+			@echo "Cleaned and rebuilt everything for ft_printf!"
 
-re: fclean all
+.PHONY:		all clean fclean re norm
