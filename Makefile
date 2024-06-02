@@ -1,54 +1,49 @@
-#Variables
+TARGET = libftprintf.a
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+AR = ar rcs
+RM = rm -f
+INCLUDE_DIR = -I.
 
-NAME		= libftprintf.a
-INCLUDE		= include
-LIBFT		= libft
-SRC_DIR		= ./
-OBJ_DIR		= obj/
-CC			= cc
-CFLAGS		= -Wall -Werror -Wextra -I
-RM			= rm -f
-AR			= ar rcs
+# Define colors
+DEFAULT_COLOR = \033[0;39m
+RED = \033[0;91m
+GREEN = \033[0;92m
+YELLOW = \033[0;93m
 
-#Sources
+# Source and object file lists
+SOURCE_FILES =	ft_printf \
+		ft_printf_utils \
+		converts \
 
-SRC			=	ft_printf.c	\
-				printf_utils.c	\
-				converts.c	\
+SOURCES = $(addsuffix .c, $(SOURCE_FILES))
+OBJECTS = $(addsuffix .o, $(SOURCE_FILES))
 
-OBJ 		= 	$(SRC:.c=.o)
+# Build rules
 
-###
-
-OBJF		=	.cache_exists
-
-all:		$(NAME)
-
-$(NAME):	$(OBJ)
-			@make -C $(LIBFT)
-			@cp libft/libft.a .
-			@$(AR) $(NAME) $(OBJ)
-			@echo "ft_printf compiled!"
+$(TARGET): $(OBJECTS)
+	@ make -C libft
+	@ cp libft/libft.a .
+	@ mv libft.a $(TARGET)
+	@ $(AR) $(TARGET) $(OBJECTS)
+	@ echo "$(GREEN)Compiled libftprintf.a successfully!$(DEFAULT_COLOR)"
 
 %.o: %.c
-			@echo "Compiling: $<"
-			@$(CC) $(CFLAGS) $(INCLUDE) libft.a -c $< -o $@
+	@ $(CC) $(CFLAGS) $(INCLUDE_DIR) -c $< -o $@
+	@ echo "$(GREEN)Created object files successfully$(DEFAULT_COLOR)"
+
+all: $(TARGET)
 
 clean:
-			@$(RM) -rf $(OBJ_DIR)
-			@make clean -C $(LIBFT)
-			@echo "$(BLUE)ft_printf object files cleaned!$(DEF_COLOR)"
+	@ $(RM) -rf $(OBJECTS)
+	@ make clean -C libft
+	@ echo "$(RED)Removed object files$(DEFAULT_COLOR)"
 
-fclean:		clean
-			@$(RM) -f $(NAME)
-			@$(RM) -f $(LIBFT)/libft.a
-			@echo "ft_printf executable files cleaned!$(DEF_COLOR)"
-			@echo "libft executable files cleaned!$(DEF_COLOR)"
+fclean: clean
+	@ $(RM) $(TARGET)
+	@ $(RM) libft/libft.a
+	@ echo "$(RED)Removed 'libftprintf.a' and 'libft.a' successfully$(DEFAULT_COLOR)"
 
-re:			fclean all
-			@echo "Cleaned and rebuilt everything for ft_printf!"
+bonus: all
 
-norm:
-			@norminette $(SRC) $(INCLUDE) $(LIBFT) | grep -v Norme -B1 || true
-
-.PHONY:		all clean fclean re norm
+re: fclean all

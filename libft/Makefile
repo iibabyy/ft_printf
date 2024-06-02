@@ -59,7 +59,6 @@ CC_FLAGS = -Wall -Wextra -Werror
 
 $(OBJS_DIR)%.o : %.c libft.h
 	@mkdir -p $(OBJS_DIR)
-	@echo "Compiling: $<"
 	
 	@clang $(CC_FLAGS) -c $< -o $@
 
