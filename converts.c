@@ -23,8 +23,12 @@ int print_str(char *str)
     i = 0;
     check = 0;
 	if (!str)
-		return(0);
-    while (str[i])
+	{
+		check = write(1, "(null)", 6);
+		if (check < 0)
+        	return(-1);
+		return(check);
+	}while (str[i])
     {
 		if (write(1, &str[i], 1) < 0)
             return(-1);

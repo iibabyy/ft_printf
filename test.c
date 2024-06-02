@@ -64,9 +64,9 @@ int     ft_printf(const char *str, ...);
 
 int     main()
 {
-    char	*str = " %u ";
+    char	*str = " NULL %s NULL ";
 	int		check;
-	unsigned int	arg1 = -1;
+	char	*arg1 = 0;
 	int		*arg2 = 0;
     // ft_printf("ft_printf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%", _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
     // printf("\n\nprintf:\nchar: %c / string: %s / int: %i / dec: %d / unsign int: %u\nhexa: %x / HEXA: %X / pointer: %p / percent sign: %%", _char, _string, _int, _int, u_int, _hexa, _hexa, _pointer);
