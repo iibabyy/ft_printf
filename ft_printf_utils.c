@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 19:18:10 by ibaby             #+#    #+#             */
-/*   Updated: 2024/06/05 19:23:22 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/06/05 19:52:51 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,7 @@ int	convert_flag(const char flag, va_list ap)
 		return (print_str(va_arg(ap, char *)));
 	else if (flag == 'p')
 		return (print_pointer(va_arg(ap, void *)));
-	else if (flag == 'd')
-		return ((print_nbr(va_arg(ap, int))));
-	else if (flag == 'i')
+	else if (flag == 'i' || flag == 'd')
 		return ((print_nbr(va_arg(ap, int))));
 	else if (flag == 'u')
 		return ((print_unsigned(va_arg(ap, unsigned int))));
@@ -92,8 +90,14 @@ int	convert_flag(const char flag, va_list ap)
 		return ((print_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF")));
 	else if (flag == '\0')
 		return (-1);
-	else
+	else if (flag == '%')
 		return ((write(1, "%", 1)));
+	else
+	{
+		if ((write(1, "%", 1) + write(1, &flag, 1)) != 2)
+			return (-1);
+		return (2);
+	}
 }
 
 char	*ft_strchr(const char *str, int c)
