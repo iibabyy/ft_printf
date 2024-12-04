@@ -52,6 +52,8 @@ NAME = libftprintf.a
 
 all : $(NAME)
 
+bonus : all
+
 message:
 	@echo "👷$(GREEN)compiling printf files$(END)👷"
 

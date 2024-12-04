@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 01:58:28 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:24:12 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/04 21:25:46 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	process_hash(t_data *data)
 {
 	if (type(HEXA, data) == false && type(HEXA_MAJ, data) == false)
 		return (EXIT_SUCCESS);
-	if (data->arg.content[0] == '0')
+	if (data->arg.content[0] == '0' || data->arg.content[0] == '\0')
 		return (EXIT_SUCCESS);
 	else if (type(HEXA, data))
 		ft_strlcpy(data->arg.sign, "0x", 3);

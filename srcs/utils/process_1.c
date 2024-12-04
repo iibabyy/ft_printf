@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 01:52:44 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:24:12 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/04 21:38:50 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	process_padding(t_data *data)
 
 	if (flag(WIDTH, data) == false)
 		return (EXIT_SUCCESS);
-	if (flag(MINUS, data) || flag(ZERO, data))
+	if (flag(MINUS, data) || (flag(ZERO, data) && flag(HASH, data) == false && flag(DOT, data) == false))
 		return (EXIT_SUCCESS);
-	arg_len = data->arg.size + ft_strlen(data->arg.sign);
+	arg_len = data->arg.size;
 	width_needed = data->arg.min_width - arg_len;
 	if (width_needed <= 0)
 		return (EXIT_SUCCESS);
@@ -68,7 +68,7 @@ int	process_zero(t_data *data)
 	int		width_needed;
 	int		arg_len;
 
-	if (flag(WIDTH, data) == false || flag(MINUS, data))
+	if (flag(WIDTH, data) == false || flag(DOT, data) || flag(MINUS, data) || flag(HASH, data))
 		return (EXIT_SUCCESS);
 	else if (type(PTR, data) || type(CHAR, data) || type(STR, data))
 		return (EXIT_SUCCESS);

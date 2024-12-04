@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 02:16:09 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:39:44 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/04 21:25:14 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 int	process_flags(t_data *data)
 {
+	if (flag(DOT, data) && (type(INT, data) || type(UNS_INT, data) || type(HEXA, data) || type(HEXA_MAJ, data)) && data->arg.content[0] == '0' && data->arg.precision == 0)
+	{
+		data->arg.content[--data->arg.size] = '\0';
+	}
 	if (flag(PLUS, data) && process_plus(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	else if (flag(SPACE, data) && process_space(data) == EXIT_FAILURE)

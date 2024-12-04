@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 23:15:13 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:40:24 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/04 21:22:08 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_printf(const char *format, ...)
 	int		i;
 
 	if (format == NULL)
-		return (0);
+		return (-1);
 	init_printf(&data);
 	va_start(data.ap, format);
 	if (check_args(format) == EXIT_FAILURE)
