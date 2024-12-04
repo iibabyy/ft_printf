@@ -6,19 +6,19 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 02:27:00 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:23:52 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/04 03:49:15 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	init_fprintf(int fd, t_data *data)
+void	init_dprintf(int fd, t_data *data)
 {
 	ft_memset(data, 0, sizeof(t_data));
 	data->fd = fd;
 }
 
-int	ft_fprintf(int fd, const char *format, ...)
+int	ft_dprintf(int fd, const char *format, ...)
 {
 	t_data	data;
 	int		i;
@@ -27,7 +27,7 @@ int	ft_fprintf(int fd, const char *format, ...)
 		return (0);
 	else if (fd < 0)
 		return (-1);
-	init_fprintf(fd, &data);
+	init_dprintf(fd, &data);
 	va_start(data.ap, format);
 	if (check_args(format) == EXIT_FAILURE)
 		return (va_end(data.ap), -1);
