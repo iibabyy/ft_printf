@@ -66,16 +66,16 @@ $(NAME) : message $(OBJS)
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@$(CREATE_OBJ_DIR)
 	@$(CC) $(C_FLAGS) -c $< -o $@
-# @$(eval COMPILED_FILES := $(shell echo $$(($(COMPILED_FILES)+1))))
-# @echo -n ""
-# @for i in `seq 1 $(shell echo "$$(($(COMPILED_FILES)*$(BAR_SIZE)/$(TOTAL_FILES)))")`; do \
-# 	echo -n "$(G)▰$(X)" ; \
-# done
-# @for i in `seq 1 $(shell echo "$$(($(BAR_SIZE)-$(COMPILED_FILES)*$(BAR_SIZE)/$(TOTAL_FILES)))")`; do \
-# 	echo -n "▱" ; \
-# done
-# @echo -n " [$(shell echo "scale=2; $(COMPILED_FILES)/$(TOTAL_FILES) * 100" | bc)%] "
-# @printf "\e[0K\r"
+	@$(eval COMPILED_FILES := $(shell echo $$(($(COMPILED_FILES)+1))))
+	@echo -n ""
+	@for i in `seq 1 $(shell echo "$$(($(COMPILED_FILES)*$(BAR_SIZE)/$(TOTAL_FILES)))")`; do \
+		echo -n "$(G)▰$(X)" ; \
+	done
+	@for i in `seq 1 $(shell echo "$$(($(BAR_SIZE)-$(COMPILED_FILES)*$(BAR_SIZE)/$(TOTAL_FILES)))")`; do \
+		echo -n "▱" ; \
+	done
+	@echo -n " [$(shell echo "scale=2; $(COMPILED_FILES)/$(TOTAL_FILES) * 100" | bc)%] "
+	@printf "\e[0K\r"
 
 clean : 
 	@rm -rf $(OBJS_DIR)
