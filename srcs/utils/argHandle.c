@@ -6,18 +6,32 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 02:16:09 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 21:25:14 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/05 13:22:16 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_printf.h"
 
+void	remove_zeros_if_needed(t_data *data)
+{
+	bool	is_num_type;
+	bool	zero_precision;
+	bool	insignificant_zero;
+
+	is_num_type = (type(INT, data) || type(UNS_INT, data)
+			|| type(HEXA, data) || type(HEXA_MAJ, data));
+	zero_precision = (flag(DOT, data) && data->arg.precision == 0);
+	insignificant_zero = data->arg.content[0] == '0';
+	if (is_num_type && zero_precision && insignificant_zero)
+	{
+		data->arg.content[0] = '\0';
+		data->arg.size = 0;
+	}
+}
+
 int	process_flags(t_data *data)
 {
-	if (flag(DOT, data) && (type(INT, data) || type(UNS_INT, data) || type(HEXA, data) || type(HEXA_MAJ, data)) && data->arg.content[0] == '0' && data->arg.precision == 0)
-	{
-		data->arg.content[--data->arg.size] = '\0';
-	}
+	remove_zeros_if_needed(data);
 	if (flag(PLUS, data) && process_plus(data) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	else if (flag(SPACE, data) && process_space(data) == EXIT_FAILURE)

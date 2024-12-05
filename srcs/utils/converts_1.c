@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 03:25:00 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:24:12 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/05 12:54:15 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	convert_unsigned(unsigned int c, char *tmp, int *index)
 	}
 }
 
-char	*convert_str(char *str)
+char	*convert_str(char *str, t_data *data)
 {
 	if (str == NULL)
-		return (ft_strdup("(null)"));
+		return (data->arg.null_str = true, ft_strdup("(null)"));
 	return (ft_strdup(str));
 }
 

@@ -618,8 +618,8 @@ static void test_pointer_p(void *p1, void *p2, void *p3, void *p4, void *p5)
 	r_b = printf("|%9p|%19p|%15p|%17p|%9p|%2p|\n", p1, p2, p3, p4, p5, p5);
 	printf("%s %d, %d\n\n", r_a == r_b ? ok : ko, r_a, r_b);
 
-	r_a = ft_printf("|%-9p|%-20p|%-20p|%-20p|%-9p|\n", p1, p2, p3, p4, p5);
-	r_b = printf("|%-9p|%-20p|%-20p|%-20p|%-9p|\n", p1, p2, p3, p4, p5);
+	r_a = ft_printf("|%-9p|%-20p|%-20p|%-20p|%.2p|\n", p1, p2, p3, p4, p5);
+	r_b = printf("|%-9p|%-20p|%-20p|%-20p|%.2p|\n", p1, p2, p3, p4, p5);
 	printf("%s %d, %d\n\n", r_a == r_b ? ok : ko, r_a, r_b);
 
 }

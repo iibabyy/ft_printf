@@ -2,6 +2,8 @@
 
 int main()
 {
-	printf("[%010.0i]\n", 15);
-	ft_printf("[%010.0i]\n", 15);
+	int real = printf("[%1s]\n", "");
+	int fake = ft_printf("[%1s]\n", "");
+	printf( "\nprintf =    %d\n", real);
+	printf( "ft_printf = %d\n", fake);
 }

@@ -27,17 +27,19 @@ SRCS_DIR = srcs/
 
 OBJS_DIR = .objs/
 
+PROCESS_FLAGS = $(addprefix process_flags/, hash.c minus.c plus.c precision.c space.c width.c zero.c )
+
 UTILS = $(addprefix utils/, parsing.c utils_2.c converts_1.c converts_2.c \
-    	 argHandle.c process_1.c process_2.c utils_1.c argUtils.c)
+    	 argHandle.c utils_1.c argUtils.c)
 
 LIBFT = $(addprefix libft/, ft_calloc.c ft_strcmp.c ft_strjoin.c ft_re_strdup.c ft_strdup.c ft_re_strjoin.c ft_memmove.c ft_memcpy.c ft_strlcpy.c ft_strlcat.c free_2d_array.c ft_strlen_2d.c ft_strdup.c ft_isdigit.c ft_strlen.c ft_memset.c ft_putendl_fd.c ft_putstr_fd.c ft_putchar_fd.c )
 
 SRCS = $(addprefix $(SRCS_DIR), ft_printf.c ft_sprintf.c ft_dprintf.c \
-		 $(UTILS) $(LIBFT))
+		 $(PROCESS_FLAGS) $(UTILS) $(LIBFT))
 
 OBJS = $(SRCS:$(SRCS_DIR)%.c=$(OBJS_DIR)%.o)
 
-CREATE_OBJ_DIR = mkdir -p $(OBJS_DIR)/libft $(OBJS_DIR)/utils
+CREATE_OBJ_DIR = mkdir -p $(OBJS_DIR)/libft $(OBJS_DIR)/utils $(OBJS_DIR)/process_flags
 
 #		LOADING BAR		#
 G				= $(BLUE)

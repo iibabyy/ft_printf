@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 02:17:13 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:28:01 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/05 12:53:27 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_arg
 	long	min_width;
 	char	type;
 	int		flags;
+	bool	null_str;
 }	t_arg;
 
 typedef struct s_data
@@ -121,7 +122,7 @@ char	*next_arg(t_data *data);
 
 /*		CONVERT		*/
 
-char	*convert_str(char *str);
+char	*convert_str(char *str, t_data *data);
 void	convert_lhexa(unsigned long int num, char *hex, char *temp, int *index);
 void	convert_pointer(void *pointer, char *tmp);
 char	*convert_char(char c);

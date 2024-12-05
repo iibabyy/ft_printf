@@ -6,7 +6,7 @@
 /*   By: ibaby <ibaby@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 04:29:52 by ibaby             #+#    #+#             */
-/*   Updated: 2024/12/04 03:27:15 by ibaby            ###   ########.fr       */
+/*   Updated: 2024/12/05 13:19:37 by ibaby            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*next_arg(t_data *data)
 	if (type(DECIMAL, data) == true)
 		data->arg.type = INT;
 	if (type(STR, data))
-		return (convert_str(va_arg(data->ap, char *)));
+		return (convert_str(va_arg(data->ap, char *), data));
 	else if (type(CHAR, data))
 		return (convert_char((char)va_arg(data->ap, int)));
 	else if (type(INT, data) || type(DECIMAL, data))
